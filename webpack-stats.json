@@ -1,0 +1,85 @@
+{
+  "status": "done",
+  "assets": {
+    "main-00adf74b0ca88a396fcf.js": {
+      "name": "main-00adf74b0ca88a396fcf.js",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-00adf74b0ca88a396fcf.js",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-00adf74b0ca88a396fcf.js"
+    },
+    "main-00adf74b0ca88a396fcf.js.map": {
+      "name": "main-00adf74b0ca88a396fcf.js.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-00adf74b0ca88a396fcf.js.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-00adf74b0ca88a396fcf.js.map"
+    },
+    "main-79eda49f87db5a01949a.js": {
+      "name": "main-79eda49f87db5a01949a.js",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-79eda49f87db5a01949a.js",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-79eda49f87db5a01949a.js"
+    },
+    "main-79eda49f87db5a01949a.js.map": {
+      "name": "main-79eda49f87db5a01949a.js.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-79eda49f87db5a01949a.js.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-79eda49f87db5a01949a.js.map"
+    },
+    "main-c6475464dcfaf8976c7d.js": {
+      "name": "main-c6475464dcfaf8976c7d.js",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-c6475464dcfaf8976c7d.js",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-c6475464dcfaf8976c7d.js"
+    },
+    "main-c6475464dcfaf8976c7d.js.map": {
+      "name": "main-c6475464dcfaf8976c7d.js.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main-c6475464dcfaf8976c7d.js.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main-c6475464dcfaf8976c7d.js.map"
+    },
+    "main.148977fcb381842cb2fc.hot-update.js": {
+      "name": "main.148977fcb381842cb2fc.hot-update.js",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.148977fcb381842cb2fc.hot-update.js",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.148977fcb381842cb2fc.hot-update.js"
+    },
+    "main.148977fcb381842cb2fc.hot-update.js.map": {
+      "name": "main.148977fcb381842cb2fc.hot-update.js.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.148977fcb381842cb2fc.hot-update.js.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.148977fcb381842cb2fc.hot-update.js.map"
+    },
+    "main.148977fcb381842cb2fc.hot-update.json": {
+      "name": "main.148977fcb381842cb2fc.hot-update.json",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.148977fcb381842cb2fc.hot-update.json",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.148977fcb381842cb2fc.hot-update.json"
+    },
+    "main.a54a527cbfb917d945c8.hot-update.js": {
+      "name": "main.a54a527cbfb917d945c8.hot-update.js",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.a54a527cbfb917d945c8.hot-update.js",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.a54a527cbfb917d945c8.hot-update.js"
+    },
+    "main.a54a527cbfb917d945c8.hot-update.js.map": {
+      "name": "main.a54a527cbfb917d945c8.hot-update.js.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.a54a527cbfb917d945c8.hot-update.js.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.a54a527cbfb917d945c8.hot-update.js.map"
+    },
+    "main.a54a527cbfb917d945c8.hot-update.json": {
+      "name": "main.a54a527cbfb917d945c8.hot-update.json",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.a54a527cbfb917d945c8.hot-update.json",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.a54a527cbfb917d945c8.hot-update.json"
+    },
+    "main.css": {
+      "name": "main.css",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.css",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.css"
+    },
+    "main.css.map": {
+      "name": "main.css.map",
+      "path": "D:\\WebImages\\assets\\webpack_bundles\\main.css.map",
+      "publicPath": "http://localhost:3000/frontend/webpack_bundles/main.css.map"
+    }
+  },
+  "chunks": {
+    "main": [
+      "main.css",
+      "main-00adf74b0ca88a396fcf.js",
+      "main.a54a527cbfb917d945c8.hot-update.js"
+    ]
+  },
+  "publicPath": "http://localhost:3000/frontend/webpack_bundles/",
+  "error": "ModuleNotFoundError",
+  "message": "Module not found: Error: Can't resolve 'fs' in 'D:\\WebImages\\assets\\js'"
+}

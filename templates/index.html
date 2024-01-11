@@ -1,0 +1,69 @@
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    {% render_bundle 'main' 'css' %}
+  </head>
+  
+  <body style="background-color: darkslategray">
+  <style>
+.container {
+    border-color: darkorange; border-width: 50px;
+  position: relative;
+  width: 50%;
+  margin-top: 20px;
+}
+.container:hover button {
+visibility: visible;
+}
+.container:hover img {
+visibility: visible;
+}
+buttons {
+visibility: hidden;
+    position: absolute;
+
+}
+
+
+.change_img {
+    position: absolute;
+    top: -130%;
+
+  width: 80px;
+  height: 30px;
+  background-color: #555;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.container button:hover {
+  background-color: black;
+
+}
+  </style>
+    <div id="react-app"></div>
+    {% render_bundle 'main' 'js' %}
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+<div class="container">
+    {% for i in img_obj %}
+  <img src='{{ i }}' style="height:250px; width: 250px;"/>
+        <buttons>
+        <button class="change_img">Заменить</button>
+        <img class="del_img" style="height: 30px; width: 30px; position: relative;  top: -8px" src="media/img_del.png">
+        </buttons>
+    {% endfor %}
+</div>
+  </body>
+</html>
