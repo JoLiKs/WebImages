@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flying Shape</title>
+    <style>
+        #txt {
+            border-radius: 70px;
+            padding: 5em;
+        }
+        #shape {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            animation: fly 5s infinite;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateX(0) rotate(0deg);
+                border-radius: 50%;
+                background-color: red;
+            }
+            50% {
+                transform: translateX(200px) rotate(180deg);
+                border-radius: 0;
+                background-color: white;
+            }
+            100% {
+                transform: translateX(0) rotate(360deg);
+                border-radius: 50%;
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+<body>
+    <input >
+    <textarea id="txt"></textarea>
+    <div id="shape"></div>
+</body>
+</html>
