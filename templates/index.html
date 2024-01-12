@@ -6,16 +6,19 @@
     <title>Example</title>
     {% render_bundle 'main' 'css' %}
   </head>
-  
+
   <body style="background-color: darkslategray">
   <style>
+
 .container {
-    border-color: darkorange; border-width: 50px;
+    border: 3px solid #fff;
+
   position: relative;
   width: 50%;
   margin-top: 20px;
 }
-.container:hover button {
+
+.container:hover input {
 visibility: visible;
 }
 .container:hover img {
@@ -23,8 +26,13 @@ visibility: visible;
 }
 buttons {
 visibility: hidden;
-    position: absolute;
-
+    position: relative;
+    left: -30%;
+    top: -10%;
+}
+buttons img {
+    position: relative;
+    left: 20%;
 }
 
 
@@ -32,9 +40,9 @@ visibility: hidden;
     position: absolute;
     top: -130%;
 
-  width: 80px;
-  height: 30px;
-  background-color: #555;
+  width: 110px;
+  height: 40px;
+
   color: white;
   font-size: 14px;
   padding: 5px;
@@ -43,10 +51,7 @@ visibility: hidden;
   border-radius: 7px;
 }
 
-.container button:hover {
-  background-color: black;
 
-}
   </style>
     <div id="react-app"></div>
     {% render_bundle 'main' 'js' %}
@@ -58,12 +63,46 @@ visibility: hidden;
 
 <div class="container">
     {% for i in img_obj %}
-  <img src='{{ i }}' style="height:250px; width: 250px;"/>
+  <img src='{{ i }}' class="img" style="height:250px; width: 250px; border: 6px solid blueviolet;" alt=""/>
         <buttons>
-        <button class="change_img">Заменить</button>
-        <img class="del_img" style="height: 30px; width: 30px; position: relative;  top: -8px" src="media/img_del.png">
+        <input type="file" class="change_img" value="Заменить">
+        <img class="del_img" style="height: 30px; width: 30px; position: relative;  top: -8px" src="media/img_del.png" alt="">
         </buttons>
     {% endfor %}
 </div>
+  <script>
+      imgs = document.getElementsByClassName('img')
+      change_btns = document.getElementsByClassName('change_img')
+      del_btns = document.getElementsByClassName('del_img')
+      for (let i = 0; i<change_btns.length; i++) {
+          imgs[i].addEventListener('click', ()=> {
+          let formData = new FormData();
+          formData.append('get_color', imgs[i].src)
+          let xhr = new XMLHttpRequest();
+          xhr.open('PUTH', '');
+          xhr.send(formData)
+          xhr.onload = () => alert("Преобладающий цвет: "+xhr.response)
+          })
+          del_btns[i].addEventListener('click', ()=> {
+              let formData = new FormData();
+              formData.append('to_del', imgs[i].src)
+              let xhr = new XMLHttpRequest();
+              xhr.open('DELETE', '');
+              xhr.send(formData)
+              xhr.onload = () => location.reload()
+          })
+          change_btns[i].addEventListener('change', ()=> {
+              let formData = new FormData();
+              formData.append('file', change_btns[i].files[0]);
+              formData.append('old_file', imgs[i].src)
+              let xhr = new XMLHttpRequest();
+              xhr.open('POST', '');
+              xhr.send(formData)
+              xhr.onload = () => location.reload()
+
+
+          })}
+
+  </script>
   </body>
 </html>
