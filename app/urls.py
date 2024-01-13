@@ -24,6 +24,8 @@ from backend import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('view/', views.view),
+    path('addNew/', views.addNew)
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

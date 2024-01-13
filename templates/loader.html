@@ -1,0 +1,15 @@
+{% load static %}
+<html>
+<head>
+   <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
+</head>
+<body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <div class="loader">
+        <div class="loader_inner"></div>
+    </div>
+    <script>
+         $(".loader").delay(400).fadeOut("slow");
+    </script>
+</body>
+</html>

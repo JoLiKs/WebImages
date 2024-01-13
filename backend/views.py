@@ -3,7 +3,7 @@ from collections import Counter
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from sklearn.cluster import KMeans
 
@@ -20,7 +20,7 @@ def get_dominant_color(image, k=4):
     dominant_color = clt.cluster_centers_[label_counts.most_common(1)[0][0]]
     return list(dominant_color)
 @csrf_exempt
-def index(request):
+def view(request):
     if request.method == 'PUTH':
         file_name = request.body.decode().split('/', 3)[3].split('----')[0][:-2]
         img = cv2.imread(file_name)
@@ -49,16 +49,29 @@ def index(request):
             files = os.listdir('media/images')
             for i in files:
                 img_obj.append('media/images/' + i)
-            return render(request, 'index.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'view.html', {'form': form, 'img_obj': img_obj})
         img_obj = []
         files = os.listdir('media/images')
         for i in files:
             img_obj.append('media/images/' + i)
-        return render(request, 'index.html', {'form': None, 'img_obj': img_obj})
+        return render(request, 'view.html', {'form': None, 'img_obj': img_obj})
     else:
         form = ImageForm()
     files = os.listdir('media/images')
     img_obj = []
     for i in files:
         img_obj.append('media/images/' + i)
-    return render(request, 'index.html', {'form': form, 'img_obj': img_obj})
+    return render(request, 'view.html', {'form': form, 'img_obj': img_obj})
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def addNew(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+    form = ImageForm()
+    return render(request, 'addNew.html', {'form': form})

@@ -1,0 +1,85 @@
+.six {
+  background: #F7E2C7;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 10%;
+  margin: 0 0 5%;
+}
+.six h1 {
+  font-weight: normal;
+  font-family: 'Merriweather', serif;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  color: #F7844E;
+  font-size: 40px;
+  padding: .4em 1em .55em;
+
+}
+.six h1:before,
+.six h1:after {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: .1em;
+  background: #294200;
+}
+.six h1:before {
+  left: 0;
+  top: 0;
+}
+.six h1:after {
+  right: 0;
+  bottom: 0;
+}
+.six h1 span:before,
+.six h1 span:after {
+  content: "";
+  position: absolute;
+  width: .65em;
+  height: .65em;
+  border: .1em solid #294200;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.six h1 span:before {
+  top: -.55em;
+  left: -.325em;
+}
+.six h1 span:after {
+  bottom: -.55em;
+  right: -.325em;
+}
+@media (max-width: 600px) {
+  .six h1 {font-size: 2em;}
+}
+@media (max-width: 450px) {
+  .six h1 {font-size: 1.5em;}
+}
+.loader {
+  background: none repeat scroll 0 0 #191f26;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+}
+
+.loader .loader_inner {
+  background-image: url("https://www.icegif.com/wp-content/uploads/2023/07/icegif-1264.gif");
+  background-size: cover;
+  background-color: #191f26;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  height: 200px;
+  width: 200px;
+  margin-top: -150px;
+  margin-left: -110px;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+}
