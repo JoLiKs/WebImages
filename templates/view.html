@@ -73,12 +73,39 @@ buttons img {
       del_btns = document.getElementsByClassName('del_img')
       for (let i = 0; i<change_btns.length; i++) {
           imgs[i].addEventListener('click', ()=> {
-          let formData = new FormData();
+         if (all_hide) {
+                 for (let j = 0; j<imgs.length; j++) {
+                  if (j !== i) {
+                        imgs[j].style.visibility = 'visible'
+                  }
+              }
+                 imgs[i].style.width = '250px'
+              imgs[i].style.height = '250px'
+                  imgs[i].style.position = 'relative'
+              imgs[i].style.left = ''
+              imgs[i].style.top = ''
+                  all_hide = false
+                 return
+              }
+              let formData = new FormData();
           formData.append('get_color', imgs[i].src)
           let xhr = new XMLHttpRequest();
           xhr.open('PUTH', '');
           xhr.send(formData)
-          xhr.onload = () => alert("Преобладающий цвет: "+xhr.response)
+          xhr.onload = () => {
+               for (let j = 0; j<imgs.length; j++) {
+                  if (j !== i) {
+                        imgs[j].style.visibility = 'hidden'
+                  }
+              }
+              imgs[i].style.width = '40vw'
+              imgs[i].style.height = '60vh'
+              imgs[i].style.position = 'absolute'
+              imgs[i].style.left = '28vw'
+              imgs[i].style.top = '5vh'
+              imgs[i].insertAdjacentHTML('afterend', `<b style="position: absolute; left: 10px; top: 5vh">Преобладающий цвет:<br>${xhr.response}</b>`)
+              //TODO: Сделать сохранение тега описания с уникальным айди и чтоб потом у каждого изображения уже было готово описание
+              all_hide = true
           })
           del_btns[i].addEventListener('click', ()=> {
               let formData = new FormData();
