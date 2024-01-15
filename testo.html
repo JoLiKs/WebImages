@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Flying Shape</title>
     <style>
-        #txt {
-            border-radius: 70px;
-            padding: 5em;
-        }
-        #shape {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            position: absolute;
-            animation: fly 5s infinite;
-        }
-
-        @keyframes fly {
-            0% {
-                transform: translateX(0) rotate(0deg);
-                border-radius: 50%;
-                background-color: red;
-            }
-            50% {
-                transform: translateX(200px) rotate(180deg);
-                border-radius: 0;
-                background-color: white;
-            }
-            100% {
-                transform: translateX(0) rotate(360deg);
-                border-radius: 50%;
-                background-color: red;
-            }
-        }
+    #ball {
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        border-radius: 50px;
+        background-color: #F7844E;
+    }
     </style>
 </head>
 <body>
-    <input >
-    <textarea id="txt"></textarea>
-    <div id="shape"></div>
+<div id="ball"></div>
+<button id="btn1">Остановить шар</button>
+<script>
+
+   let myRandom = (a, b) => {
+        return Math.round(Math.random() * (b - a) + a)
+    }
+    let counterX = 0
+    let counterY = 0
+    let futureX = myRandom(100, 300) //5
+   let futureY = myRandom(100, 300) //8
+   let interval = setInterval(()=> {
+
+
+     if (counterY === futureY) {
+
+     }
+     else {
+         counterY++
+     }
+     if (counterX === futureX) {
+
+     }
+     else {
+         counterX++
+     }
+     if (counterY === futureY && counterX === futureX) {
+         futureX+=myRandom(-100, 200)
+     futureY+=myRandom(-100, 200)
+     }
+
+    ball.style.left = counterX+"px"
+    ball.style.top = counterY+"px"
+
+ }, 1)
+   ball.onclick = () => {
+       alert('Ура! Вы поймали Колобка!')
+       ball.style.visibility = 'hidden'
+       clearInterval(interval)
+       let interval2 = setInterval(()=> {
+        document.body.style.background = `rgb(${myRandom(0, 255)}, ${myRandom(0, 255)}, ${myRandom(0, 255)})`
+ }, 100)
+   }
+    btn1.onclick = () => {
+       clearInterval(interval)
+    }
+
+
+</script>
 </body>
 </html>
