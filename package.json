@@ -20,6 +20,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "rgbaster": "^2.1.1"
   }
 }

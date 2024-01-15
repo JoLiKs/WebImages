@@ -10,6 +10,13 @@
     </div>
     <script>
          $(".loader").delay(400).fadeOut("slow");
+         window.onload = () => {
+         $("#btn_addNew").on("click", ()=> {
+             $(".loader").delay(300).fadeIn("slow");
+             setTimeout(()=> {
+                 location.href = 'view/'
+             }, 1300)
+         })}
     </script>
 </body>
 </html>

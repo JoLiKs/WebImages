@@ -1,21 +1,32 @@
+{% load static %}
 {% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Example</title>
+      <link rel="stylesheet" href="{% static 'css/index.css'%}" type="text/css">
+
+    <title>Просмотр изображений</title>
     {% render_bundle 'main' 'css' %}
   </head>
 
   <body style="background-color: darkslategray">
+  <script src="https://cdn.rawgit.com/briangonzalez/rgbaster.js/b2fb235b/rgbaster.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="https://unpkg.com/fast-average-color/dist/index.browser.min.js"></script>
   <style>
 
 .container {
+    margin-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 280px);
+    gap: 20px;
+    justify-content: start;
     border: 3px solid #fff;
-
-  position: relative;
-  width: 50%;
-  margin-top: 20px;
+    padding: 1em;
+    position: relative;
+    width: 93vw;
+    margin-top: 20px;
 }
 
 .container:hover input {
@@ -23,6 +34,13 @@ visibility: visible;
 }
 .container:hover img {
 visibility: visible;
+}
+.container input {
+    margin-left: -110px;
+    margin-top: 75px;
+}
+.main {
+
 }
 buttons {
 visibility: hidden;
@@ -33,6 +51,7 @@ visibility: hidden;
 buttons img {
     position: relative;
     left: 20%;
+
 }
 
 
@@ -54,32 +73,86 @@ buttons img {
 
   </style>
   {% include 'loader.html' %}
-    <div id="react-app"></div>
+    <div id="react-app">
     {% render_bundle 'main' 'js' %}
 
 
 <div class="container">
+
     {% for i in img_obj %}
-  <img src='../{{ i }}' class="img" style="height:250px; width: 250px; border: 6px solid blueviolet;" alt=""/>
-        <buttons>
-        <input type="file" class="change_img" value="Заменить">
-        <img class="del_img" style="height: 30px; width: 30px; position: relative;  top: -8px" src="../media/img_del.png" alt="">
+        <div class="main">
+  <img src='../{{ i }}' class="img" style="height:250px; width: 250px;" alt=""/>
+
+        <buttons >
+        <input type="file" class="change_img">
+        <img class="del_img buttons" style="height: 30px; width: 30px; position: relative;  top: -8px; left: 300px" src="../media/img_del.png" alt="">
         </buttons>
+        </div>
     {% endfor %}
 </div>
+</div>
+
   <script>
+      let all_hide = false
       imgs = document.getElementsByClassName('img')
       change_btns = document.getElementsByClassName('change_img')
       del_btns = document.getElementsByClassName('del_img')
       for (let i = 0; i<change_btns.length; i++) {
-          imgs[i].addEventListener('click', ()=> {
-          let formData = new FormData();
-          formData.append('get_color', imgs[i].src)
-          let xhr = new XMLHttpRequest();
-          xhr.open('PUTH', '');
-          xhr.send(formData)
-          xhr.onload = () => alert("Преобладающий цвет: "+xhr.response)
+          imgs[i].addEventListener('click', async () => {
+              if (all_hide) {
+                  for (let j = 0; j < imgs.length; j++) {
+                      del_btns[j].style.visibility = ''
+                      change_btns[j].style.visibility = ''
+                      if (j !== i) {
+                          imgs[j].style.visibility = 'visible'
+                      }
+                  }
+                  document.getElementById(imgs[i].src).style.visibility = 'hidden'
+                  imgs[i].style.width = '250px'
+                  imgs[i].style.height = '250px'
+                  imgs[i].style.position = 'relative'
+                  imgs[i].style.left = ''
+                  imgs[i].style.top = ''
+                  change_btns[i].style.position = ''
+                  change_btns[i].style.top = ''
+                  all_hide = false
+                  return
+              }
+
+              let fac = new FastAverageColor()
+              $(".loader").delay(150).fadeIn("slow");
+              $(".loader").delay(150).fadeOut("slow");
+
+              RGBaster.colors(imgs[i], {
+                   exclude: ['rgb(255,255,255)'],
+                   success: function (payload) {
+                       for (let j = 0; j<imgs.length; j++) {
+                           del_btns[j].style.visibility = 'hidden'
+                           change_btns[j].style.visibility = 'hidden'
+                   if (j !== i) {
+                         imgs[j].style.visibility = 'hidden'
+                   }
+               }
+                       imgs[i].style.width = '40vw'
+                       imgs[i].style.height = '60vh'
+                       imgs[i].style.position = 'absolute'
+                       imgs[i].style.left = '28vw'
+                       imgs[i].style.top = '5vh'
+                       change_btns[i].style.position = 'absolute'
+                       change_btns[i].style.top = '10vh'
+
+                       avarege_color = fac.getColor(imgs[i]);
+                       imgs[i].insertAdjacentHTML('afterend', `<div id="${imgs[i].src}" style="position: absolute; left: 10px; top: 5vh"><b>Преобладающий цвет:<br>${payload.dominant}</b>
+                        <br><div style="position: absolute; left: 10px; top: 7vh; width: 50px; height: 50px; background-color: ${payload.dominant}"></div>
+                       <br><div style="margin-top: 50px"><b>Средний цвет:<br>${avarege_color.rgb}</b></div><br><div style="position: absolute; left: 10px; top: 22vh; width: 50px; height: 50px; background-color: ${avarege_color.rgb}"></div>
+                        <div style="margin-top: 300px; width: 200px"><b>Цветовая палитра:<br>${payload.palette}</b></div>
+                        </div>`)
+                       //TODO: Сделать сохранение тега описания с уникальным айди и чтоб потом у каждого изображения уже было готово описание
+                       all_hide = true
+                   }
+               });
           })
+
           del_btns[i].addEventListener('click', ()=> {
               let formData = new FormData();
               formData.append('to_del', imgs[i].src)
@@ -87,7 +160,7 @@ buttons img {
               xhr.open('DELETE', '');
               xhr.send(formData)
               xhr.onload = () => location.reload()
-          })
+
           change_btns[i].addEventListener('change', ()=> {
               let formData = new FormData();
               formData.append('file', change_btns[i].files[0]);
@@ -96,9 +169,7 @@ buttons img {
               xhr.open('POST', '');
               xhr.send(formData)
               xhr.onload = () => console.log('change image successful')
-
-
-          })}
+          })})}
 
   </script>
   </body>

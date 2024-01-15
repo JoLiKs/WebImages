@@ -1,18 +1,16 @@
-import React, {createElement, useEffect, useRef} from 'react';
+import React, {createElement, useEffect, useRef, useState} from 'react';
 import '../css/app.css';
-
+import analyze from 'rgbaster'
 
 const App = (props) => {
   const refE = useRef(null);
+  const [setResult, result] = useState()
 
 
-  useEffect(() => {
-    if (refE.current) {
-      refE.current.innerHTML = 'Hi'}
-  }, [])
 
 
-  return <div ref={refE}/>;
+  return ''
+
 }
 
 export default App;
