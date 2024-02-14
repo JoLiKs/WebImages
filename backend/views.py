@@ -19,6 +19,7 @@ def get_dominant_color(image, k=4):
     label_counts = Counter(labels)
     dominant_color = clt.cluster_centers_[label_counts.most_common(1)[0][0]]
     return list(dominant_color)
+    
 @csrf_exempt
 def view(request):
     if request.method == 'PUTH':
