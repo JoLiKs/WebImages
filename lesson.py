@@ -13,7 +13,6 @@ tuple123 = ("Hazel Walsh", "Magister", "Scientist", "University","AAA", "BBB",
 s1 = """INSERT INTO USER values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"""
 print(s1)
 curs.execute(s1, tuple123)
-
 conn.commit()
 curs.close()
 conn.close()
